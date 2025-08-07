@@ -77,8 +77,8 @@ Multimodal-Generative-Architecture/
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/MMA.git
-cd MMA
+git clone https://github.com/BLShaw/Multimodal-Generative-Architecture.git
+cd Multimodal-Generative-Architecture
 ```
 
 2. Create a virtual environment:
