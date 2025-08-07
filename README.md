@@ -38,6 +38,26 @@ The architecture consists of the following main components:
    - Relationship heatmaps
    - Convergence and divergence analysis plots
 
+```mermaid
+flowchart TD
+    A[Raw Data] --> B{Data Preprocessing}
+    B --> C["Image Data (MNIST)"]
+    B --> D["Audio Data (FSDD)"]
+    C --> E[Image Autoencoder]
+    D --> F[Audio Autoencoder]
+    E --> G[Image Latent Space]
+    F --> H[Audio Latent Space]
+    G --> I[Multimodal Clustering]
+    H --> I
+    I --> J[Relationship Analysis]
+    J --> K[Convergence/Divergence Analysis]
+    K --> L[Visualization Module]
+    L --> M[Outputs]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style M fill:#bbf,stroke:#333,stroke-width:2px
+```
+
 ## Directory Structure
 
 ```
