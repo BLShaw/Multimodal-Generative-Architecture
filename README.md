@@ -1,7 +1,5 @@
 # Multimodal Generative Architecture
 
-A cutting-edge decoupled, generative, unsupervised multimodal architecture for processing and clustering audio and visual data through advanced encoding and clustering techniques.
-
 ## Overview
 
 This project implements a sophisticated system that processes both image (MNIST) and audio (FSDD) data using separate autoencoders, performs clustering on the latent representations, and analyzes relationships between modalities. The architecture is fully decoupled, allowing for independent processing of each modality while still enabling joint analysis.
