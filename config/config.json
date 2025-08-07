@@ -1,0 +1,71 @@
+{
+    "model": {
+        "image_autoencoder": {
+            "input_shape": [
+                28,
+                28,
+                1
+            ],
+            "encoder_layers": [
+                128,
+                64,
+                32
+            ],
+            "latent_dim": 16,
+            "decoder_layers": [
+                32,
+                64,
+                128
+            ],
+            "learning_rate": 0.001,
+            "batch_size": 32,
+            "epochs": 50
+        },
+        "audio_autoencoder": {
+            "input_shape": [
+                8192
+            ],
+            "encoder_layers": [
+                1024,
+                512,
+                256
+            ],
+            "latent_dim": 32,
+            "decoder_layers": [
+                256,
+                512,
+                1024
+            ],
+            "learning_rate": 0.001,
+            "batch_size": 16,
+            "epochs": 50
+        },
+        "clustering": {
+            "n_clusters": 10,
+            "algorithm": "kmeans",
+            "convergence_threshold": 0.001
+        }
+    },
+    "data": {
+        "mnist": {
+            "resize_to": [
+                28,
+                28
+            ],
+            "normalize": true
+        },
+        "fsdd": {
+            "sample_rate": 8000,
+            "duration": 1.0,
+            "normalize": true
+        }
+    },
+    "paths": {
+        "data_dir": "data",
+        "output_dir": "outputs",
+        "model_dir": "outputs/models",
+        "cluster_dir": "outputs/clusters",
+        "synthetic_dir": "outputs/synthetic",
+        "plot_dir": "outputs/plots"
+    }
+}
