@@ -89,6 +89,91 @@ Multimodal-Generative-Architecture/
 ├── evaluate.py
 └── visualize.py
 ```
+## Full Architecture Diagram
+
+```mermaid
+flowchart TD
+%% Global entities
+ConfigFile["Configuration File"]:::config
+Train["Training Workflow"]:::workflow
+Eval["Evaluation Workflow"]:::workflow
+Visual["Visualization Workflow"]:::workflow
+%% Input Layer
+subgraph "Input Layer"
+DataLoader["Data Loader"]:::input
+MNIST["MNIST Images"]:::data
+FSDD["FSDD Audio"]:::data
+end
+%% Processing Layer
+subgraph "Processing Layer"
+ImgAE["Image Autoencoder"]:::image
+AudioAE["Audio Autoencoder"]:::audio
+ImgLatent["Image Latent Space"]:::latent
+AudioLatent["Audio Latent Space"]:::latent
+end
+%% Analysis Layer
+subgraph "Analysis Layer"
+MultiCluster["Multimodal Clustering"]:::analysis
+Brain["Brain Module"]:::analysis
+RelAnalysis["Relationship Analysis"]:::analysis
+ConvDiv["Convergence/Divergence"]:::analysis
+end
+%% Output Layer
+subgraph "Output Layer"
+Visualize["Visualization"]:::output
+Models["Model Outputs"]:::output
+Plots["Plots"]:::output
+Synth["Synthetic Data"]:::output
+end
+%% Data Flow
+MNIST -->|"image data"| DataLoader
+FSDD -->|"audio data"| DataLoader
+DataLoader -->|"images"| ImgAE
+DataLoader -->|"audio"| AudioAE
+ImgAE -->|"latent rep"| ImgLatent
+AudioAE -->|"latent rep"| AudioLatent
+ImgLatent --> MultiCluster
+AudioLatent --> MultiCluster
+MultiCluster --> Brain
+Brain --> RelAnalysis
+RelAnalysis --> ConvDiv
+ConvDiv --> Visualize
+Visualize --> Models
+Visualize --> Plots
+Visualize --> Synth
+%% Configuration Flow
+ConfigFile -->|"config"| DataLoader
+ConfigFile -->|"config"| ImgAE
+ConfigFile -->|"config"| AudioAE
+ConfigFile -->|"config"| MultiCluster
+ConfigFile -->|"config"| Brain
+ConfigFile -->|"config"| Visualize
+%% Workflow Connections
+Train --> DataLoader
+Eval --> MultiCluster
+Visual --> Visualize
+%% Click Events
+click DataLoader "https://github.com/blshaw/multimodal-generative-architecture/blob/main/modules/data_loader.py"
+click ImgAE "https://github.com/blshaw/multimodal-generative-architecture/blob/main/modules/image_autoencoder.py"
+click AudioAE "https://github.com/blshaw/multimodal-generative-architecture/blob/main/modules/audio_autoencoder.py"
+click MultiCluster "https://github.com/blshaw/multimodal-generative-architecture/blob/main/modules/multimodal_clustering.py"
+click Brain "https://github.com/blshaw/multimodal-generative-architecture/blob/main/modules/brain_module.py"
+click ConfigFile "https://github.com/blshaw/multimodal-generative-architecture/blob/main/config/config.json"
+click Visualize "https://github.com/blshaw/multimodal-generative-architecture/blob/main/modules/visualization.py"
+click Train "https://github.com/blshaw/multimodal-generative-architecture/blob/main/train.py"
+click Eval "https://github.com/blshaw/multimodal-generative-architecture/blob/main/evaluate.py"
+click Visual "https://github.com/blshaw/multimodal-generative-architecture/blob/main/visualize.py"
+%% Styles
+classDef input fill:#D5E8D4,stroke:#82B366,color:#000
+classDef data fill:#F8CECC,stroke:#B85450,color:#000
+classDef image fill:#DAE8FC,stroke:#6C8EBF,color:#000
+classDef audio fill:#E1D5E7,stroke:#9673A6,color:#000
+classDef latent fill:#FFF2CC,stroke:#D6B656,color:#000
+classDef analysis fill:#F5F5F5,stroke:#666666,color:#000
+classDef output fill:#D4EDF7,stroke:#6DA9CF,color:#000
+classDef config fill:#FCE4D6,stroke:#D79B00,color:#000
+classDef workflow fill:#E2F0D9,stroke:#70AD47,color:#000
+```
 
 ## Installation
 
