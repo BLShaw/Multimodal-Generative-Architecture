@@ -106,7 +106,7 @@ class DataLoader:
     def _download_fsdd(self):
         print("Downloading FSDD dataset...")
         url = "https://github.com/Jakobovski/free-spoken-digit-dataset/archive/master.zip"
-        r = requests.get(url)
+        r = requests.get(url, timeout=30)
         z = zipfile.ZipFile(io.BytesIO(r.content))
         z.extractall(self.data_dir)
         
